@@ -4,6 +4,9 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import VoteList from "../views/VoteList.vue";
 import MakeVoteInfo from "../views/make/makeVoteInfo.vue";
+import VoteResult from "../views/VoteResult.vue";
+import MakeVoteAnswer from "../views/make/makeVoteAnswer.vue";
+import VoteInfo from "../views/VoteInfo.vue";
 
 Vue.use(VueRouter);
 
@@ -36,6 +39,21 @@ const routes = [
     path: "/makeVoteInfo",
     name: "makeVoteInfo",
     component: MakeVoteInfo
+  },
+  {
+    path: "/voteInfo",
+    name: "voteInfo",
+    component: VoteInfo
+  },
+  {
+    path: "/voteResult",
+    name: "voteResult",
+    component: VoteResult
+  },
+  {
+    path: "/makeVoteAnswer",
+    name: "makeVoteAnswer",
+    component: MakeVoteAnswer
   }
 ];
 

@@ -23,7 +23,11 @@
               left: 50%;
               transform: translate(-50%, -50%);"
           >
-            <v-btn large class="title font-weight-medium white--text" color="#717b84">투표만들기</v-btn>
+            <router-link to="/makeVoteInfo" style="text-decoration:none; color:white">
+              <v-btn large class="title font-weight-medium white--text" color="#717b84">
+                투표만들기
+              </v-btn>
+            </router-link>
           </div>
         </v-img>
       </v-col>

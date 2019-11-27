@@ -67,6 +67,21 @@ export default {
   data: () => ({
     //
   }),
+  methods: {
+      dataLoading(){
+        const baseURI = 'http://127.0.0.1:8000'
+        this.$http.get(`${baseURI}/api/votes/allVotes`)
+        .then((result) => {
+          console.log(result)
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      }
+  },
+  mounted() {
+    this.dataLoading()
+  }
 };
 </script>
 

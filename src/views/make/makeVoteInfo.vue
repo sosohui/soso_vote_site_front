@@ -60,9 +60,14 @@
             >
             </v-file-input>
           </v-row>
+          <v-row class="px-5">
+            <v-switch class="font-weight-black" color="blue-grey darken-3" v-model="open" inset label="非公開の投票"></v-switch>
+          </v-row>
           <v-row>
             <v-col>
-              <v-btn large color="#434b56" class="px-5 font-weight-bold title" outlined>完成</v-btn>
+              <v-btn
+                @click="saveVote()"
+                large color="#434b56" class="px-5 font-weight-bold title" outlined>完成</v-btn>
             </v-col>
           </v-row>
         </v-card>
@@ -78,8 +83,28 @@ export default {
   data: () => ({
     voteName: '',
     voteContext: '',
-    thumbnail: []
+    thumbnail: [],
+    open: 'true'
   }),
+  methods:{
+    saveVote() {
+      const baseURI = 'http://127.0.0.1:8000'
+        this.$http.post(`${baseURI}/api/votes/makeVote`,
+          {
+            'vote_id': '001003',
+            'writer': 'soso',
+            'title': this.voteName,
+            'context': this.voteContext,
+          }
+        )
+        .then((result) => {
+          console.log(result)
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
+  }
 };
 </script>
 
