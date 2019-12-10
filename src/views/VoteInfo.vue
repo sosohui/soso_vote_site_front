@@ -6,7 +6,7 @@
       >
         <div
           style="position: absolute;
-            top: 43%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-size:2vw;"
@@ -16,7 +16,7 @@
         </div>
         <div
           style="position: absolute;
-            top: 43%;
+            top: 46%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-size:3vw;"
@@ -73,6 +73,7 @@
 <script>
 
 export default {
+  //voteInfo
   name: 'VoteInfo',
 
 
@@ -89,5 +90,22 @@ export default {
     check:''
     //
   }),
+  methods: {
+      dataLoading(){
+        const baseURI = 'http://127.0.0.1'
+        this.$http.get(`${baseURI}/api/votes/voteInfo/`+this.$route.params.voteId)
+        .then((result) => {
+          this.check = result;
+          // this.allVote = result['data'];
+          // console.log(this.allVote);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      }
+  },
+  mounted() {
+    this.dataLoading()
+  }
 };
 </script>

@@ -6,7 +6,7 @@
       >
         <div
           style="position: absolute;
-            top: 43%;
+            top: 38%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-size:2vw;"
@@ -16,7 +16,7 @@
         </div>
         <div
           style="position: absolute;
-            top: 43%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-size:3vw;"
@@ -26,7 +26,7 @@
         </div>
         <div
           style="position: absolute;
-            top: 58%;
+            top: 62%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-size:2vw;"

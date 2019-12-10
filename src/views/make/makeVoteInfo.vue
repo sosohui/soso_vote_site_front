@@ -49,8 +49,8 @@
             class="px-4 pt-5 pb-0"
           >
             <v-file-input
-              style="background-color:white; height:55px;"
               v-model="thumbnail"
+              style="background-color:white; height:55px;"
               color="#43434c"
               class="font-weight-bold mb-5"
               label=""
@@ -83,19 +83,32 @@ export default {
   data: () => ({
     voteName: '',
     voteContext: '',
-    thumbnail: [],
+    thumbnail: null,
+    url: '',
     open: 'true'
   }),
   methods:{
+    // fileSelect(){
+    //   let reader = new FileReader()
+    //   reader.onload = () => {
+    //     this.url = reader.result
+    //   }
+    //   reader.readAsDataURL(this.thumbnail)
+    //   // console.log(this.$refs.thumbnail);
+    //   // this.thumbnail = this.$refs.thumbnail.files[0];
+    //   console.log(this.thumbnail);
+    // },
     saveVote() {
+      console.log(this.thumbnail)
+      const formData = new FormData();
+      formData.append('vote_id','001004');
+      formData.append('writer','soso');
+      formData.append('title',this.voteName);
+      formData.append('context',this.voteContext);
+      formData.append('thumbnail',this.thumbnail);
+
       const baseURI = 'http://127.0.0.1:8000'
-        this.$http.post(`${baseURI}/api/votes/makeVote`,
-          {
-            'vote_id': '001003',
-            'writer': 'soso',
-            'title': this.voteName,
-            'context': this.voteContext,
-          }
+        this.$http.post(`${baseURI}/api/votes/makeVote`,formData,
         )
         .then((result) => {
           console.log(result)

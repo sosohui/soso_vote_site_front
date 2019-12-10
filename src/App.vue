@@ -29,7 +29,7 @@
         class="mx-2 subtitle-1"
       >
         <router-link to="/voteList" style="text-decoration:none; color:white">
-          <span>투표 리스트</span>
+          <span>投票リスト</span>
         </router-link>
       </v-btn>
       <v-btn
@@ -38,7 +38,7 @@
         class="mx-2 subtitle-1"
       >
         <router-link to="/login" style="text-decoration:none; color:white">
-          <span>로그인</span>
+          <span>ログイン</span>
         </router-link>
       </v-btn>
     </v-app-bar>

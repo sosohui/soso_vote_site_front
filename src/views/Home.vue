@@ -15,7 +15,7 @@
               font-size:3vw;"
             class="font-weight-black"
           >
-            새로운 투표를 만들어 봅시다!
+            新しい投票を作ってみましょう！
           </div>
           <div
             style="position: absolute;
@@ -25,7 +25,7 @@
           >
             <router-link to="/makeVoteInfo" style="text-decoration:none; color:white">
               <v-btn large class="title font-weight-medium white--text" color="#717b84">
-                투표만들기
+                投票作る
               </v-btn>
             </router-link>
           </div>
@@ -35,7 +35,7 @@
 
     <v-row class="pa-2">
       <v-col align="center">
-        <div style="font-size:2.2vw" class="font-weight-black">인기 있는 투표</div>
+        <div style="font-size:2.2vw" class="font-weight-black">人気の投票</div>
       </v-col>
     </v-row>
 

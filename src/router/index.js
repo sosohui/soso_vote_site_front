@@ -41,7 +41,7 @@ const routes = [
     component: MakeVoteInfo
   },
   {
-    path: "/voteInfo",
+    path: "/voteInfo/:voteId",
     name: "voteInfo",
     component: VoteInfo
   },

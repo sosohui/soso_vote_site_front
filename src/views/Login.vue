@@ -12,7 +12,7 @@
         >
           <v-row>
             <v-col aling="center">
-              <p class="headline font-weight-bold">로그인</p>
+              <p class="headline font-weight-bold">ログイン</p>
             </v-col>
           </v-row>
           <v-row
@@ -43,7 +43,7 @@
           </v-row>
           <v-row>
             <v-col>
-              <v-btn large color="#434b56" class="px-5 font-weight-bold title" outlined>Login</v-btn>
+              <v-btn large color="#434b56" class="px-5 font-weight-bold title" outlined>ログイン</v-btn>
             </v-col>
           </v-row>
         </v-card>

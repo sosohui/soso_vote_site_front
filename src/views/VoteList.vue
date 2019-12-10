@@ -7,7 +7,7 @@
                 color="#434b56"
                 label="SearchVote"
                 outlined=""
-                placeholder="투표 번호를 입력해 주세요."
+                placeholder="投票の番号を入力してください。"
                 solo
               ></v-text-field>
               <v-btn class="mx-4 my-1" style="height:45px;" outlined small color="#434b56">
@@ -21,17 +21,18 @@
       >
       <v-col
         align="center"
-        v-for="n in 10"
-        :key="n"
+        v-for="(n,index) in allVote"
+        :key="n.vote_id"
         class="pa-5"
       >
+      <router-link :to="{ name: 'voteInfo', params: { voteId: n.vote_id } }" style="text-decoration:none;">
         <v-card
           width="260px"
           height="320px"
           style="padding-top:5px;"
         >
           <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+            :src="n.img"
             height="250px"
             width="250px"
             style="opacity: 0.5;"
@@ -46,14 +47,15 @@
                 height:30px;
                 backgroundColor:#434b56"
             >
-              {{ n }}
+              {{ index+1 }}
             </div>
             <h2
               class="ma-2 title font-weight-black"
             >
-              투표 이름
+              {{ n.title }}
             </h2>
         </v-card>
+        </router-link>
       </v-col>
     </v-row>
   </v-container>
@@ -65,14 +67,15 @@ export default {
 
 
   data: () => ({
-    //
+    allVote: null,
   }),
   methods: {
       dataLoading(){
-        const baseURI = 'http://127.0.0.1:8000'
+        const baseURI = 'http://127.0.0.1'
         this.$http.get(`${baseURI}/api/votes/allVotes`)
         .then((result) => {
-          console.log(result)
+          this.allVote = result['data'];
+          console.log(this.allVote);
         })
         .catch(function(error) {
           console.log(error);
