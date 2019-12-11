@@ -95,7 +95,7 @@
           </v-col>
           <v-col class="pa-0 ma-0">
             <v-text-field
-              v-model="thumbnail"
+              v-model="addAns"
               style="max-width:180px; max-height:50px;"
               color="indigo darken-1"
               class="font-weight-bold "
@@ -107,20 +107,34 @@
             </v-text-field>
           </v-col>
           <v-col align="center">
-            <v-btn class="ma-2 font-weight-bold" outlined color="indigo darken-1">完成</v-btn>
+            <v-btn
+              @click="addAnswer()"
+              class="ma-2 font-weight-bold" outlined color="indigo darken-1"
+            >
+              完成
+            </v-btn>
           </v-col>
         </v-card>
       </v-col>
       </v-radio-group>
+      </v-row>
       <v-row>
         <v-col
           align="center"
         >
-          <v-btn style="border-width: 2px;" large class="ma-2 title font-weight-bold" outlined color="#414954">投票する</v-btn>
-          <v-btn style="border-width: 2px;" large class="ma-2 title font-weight-bold" outlined color="#414954">結果見る</v-btn>
+          <v-btn
+            @click="checkVote()"
+            style="border-width: 2px;" large class="ma-2 title font-weight-bold" outlined color="#414954"
+          >
+            投票する
+          </v-btn>
+          <v-btn
+            style="border-width: 2px;" large class="ma-2 title font-weight-bold" outlined color="#414954"
+          >
+            結果見る
+          </v-btn>
         </v-col>
       </v-row>
-    </v-row>
   </v-container>
 </template>
 
@@ -132,37 +146,69 @@ export default {
 
 
   data: () => ({
-    voteNum: null,
     voteInfo: null,
     answerInfo: null,
     check: null,
     thumbnail: null,
+    addAns: null,
   }),
   methods: {
-      answerDataLoading(){
-        const baseURI = 'http://127.0.0.1'
-        this.$http.get(`${baseURI}/api/votes/voteInfo/`+this.$route.params.voteId)
-        .then((result) => {
-          this.voteInfo = result['data'];
-          console.log("소소");
-          console.log(this.voteInfo);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-      },
-      voteDataLoading(){
-        const baseURI = 'http://127.0.0.1'
-        this.$http.get(`${baseURI}/api/votes/answerInfo/`+this.$route.params.voteId)
-        .then((result) => {
-          this.answerInfo = result['data'];
-          console.log("히히");
-          console.log(this.answerInfo);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-      }
+    addAnswer(){
+      const formData = new FormData();
+      formData.append('answer',this.addAns);
+      formData.append('ans_img',this.thumbnail);
+      formData.append('vote_content_id',this.answerInfo[0].vote_content_id);
+
+
+      const baseURI = 'http://127.0.0.1'
+      this.$http.post(`${baseURI}/api/votes/addAnswer`,formData,
+      ).then((result) => {
+        console.log(result)
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    },
+    checkVote(){
+      console.log(this.check)
+      console.log(this.answerInfo[0].vote_content_id)
+      const formData = new FormData();
+      formData.append('answer_id',this.check);
+      formData.append('vote_content_id',this.answerInfo[0].vote_content_id)
+
+      const baseURI = 'http://127.0.0.1'
+      this.$http.post(`${baseURI}/api/votes/checkVote/`,formData)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    },
+    answerDataLoading(){
+      const baseURI = 'http://127.0.0.1'
+      this.$http.get(`${baseURI}/api/votes/voteInfo/`+this.$route.params.voteId)
+      .then((result) => {
+        this.voteInfo = result['data'];
+        console.log("소소");
+        console.log(this.voteInfo);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    },
+    voteDataLoading(){
+      const baseURI = 'http://127.0.0.1'
+      this.$http.get(`${baseURI}/api/votes/answerInfo/`+this.$route.params.voteId)
+      .then((result) => {
+        this.answerInfo = result['data'];
+        console.log("히히");
+        console.log(this.answerInfo);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    }
   },
   mounted() {
     this.voteDataLoading();

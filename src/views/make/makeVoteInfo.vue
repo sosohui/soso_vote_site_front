@@ -107,15 +107,14 @@ export default {
       formData.append('context',this.voteContext);
       formData.append('thumbnail',this.thumbnail);
 
-      const baseURI = 'http://127.0.0.1:8000'
-        this.$http.post(`${baseURI}/api/votes/makeVote`,formData,
-        )
-        .then((result) => {
-          console.log(result)
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+      const baseURI = 'http://127.0.0.1'
+      this.$http.post(`${baseURI}/api/votes/makeVote`,formData,
+      ).then((result) => {
+        console.log(result)
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     }
   }
 };
