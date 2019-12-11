@@ -43,7 +43,9 @@
           </v-row>
           <v-row>
             <v-col>
-              <v-btn large color="#434b56" class="px-5 font-weight-bold title" outlined>ログイン</v-btn>
+              <v-btn large color="#434b56" class="px-5 mx-3 font-weight-bold title" outlined>ログイン</v-btn>
+              <v-btn large color="#434b56" class="px-5 mx-3 font-weight-bold title" outlined>新規取得</v-btn>
+
             </v-col>
           </v-row>
         </v-card>

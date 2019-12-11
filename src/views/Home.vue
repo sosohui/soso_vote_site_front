@@ -44,17 +44,18 @@
     >
       <v-col
         align="center"
-        v-for="n in 4"
-        :key="n"
+        v-for="(pop,index) in popularVote"
         class="pa-5"
+        :key="index"
       >
         <v-card
+          v-if="index <= 3"
           width="260px"
           height="260px"
           style="padding-top:5px;"
         >
           <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+            :src="pop.img"
             height="250px"
             width="250px"
             style="opacity: 0.5;"
@@ -64,12 +65,13 @@
               <h2
                 class="headline font-weight-black"
                 style="
+                  min-width:200px;
                   position: absolute;
                   top: 50%;
                   left: 50%;
                   transform: translate(-50%, -50%);"
               >
-                투표 이름
+                {{ pop.title }}
               </h2>
             </div>
         </v-card>
@@ -84,8 +86,24 @@ export default {
   name: 'Home',
 
   data: () => ({
-    
+    popularVote: null
   }),
+  methods: {
+    dataLoading(){
+      const baseURI = 'http://127.0.0.1'
+      this.$http.get(`${baseURI}/api/votes/allVotes`)
+      .then((result) => {
+        this.popularVote = result['data'];
+        console.log(this.popularVote);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    }
+  },
+  mounted() {
+    this.dataLoading()
+  }
 };
 </script>
 
